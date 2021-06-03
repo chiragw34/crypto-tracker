@@ -7,6 +7,7 @@
 Create a file data.json in directory 'src/utils/'
 
 The data should be in the format:
+```javascript
 {
   "Coins":[
     {
@@ -26,7 +27,7 @@ The data should be in the format:
     .
   ]
 }
-
+```
 
 ### Install Dependencies
 
