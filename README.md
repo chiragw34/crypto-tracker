@@ -1,10 +1,13 @@
 # Crypto-Tracker
 
+## Description
+This is a tracker which will help you to track the value of crypto. The crypto coins that are available on WazirX only can be tracked.
+
 ## Configuration
 
 ### Data
 
-Create a file data.json in directory 'src/utils/'
+Create a file data.json in directory ```'src/utils/'```
 
 The data should be in the format:
 ```javascript
@@ -34,10 +37,10 @@ The data should be in the format:
 This tracker uses [WazirX Public API](https://github.com/WazirX/wazirx-api)
 You may find CORS error while running tracker. You can use chrome extension like [this](https://chrome.google.com/webstore/detail/cross-domain-cors/mjhpgnbimicffchbodmgfnemoghjakai) to avoid error.
 
-use command "npm install" to install dependencies
+Use command "npm install" to install dependencies
 
 
 ## Running the Tracker
 
-use command "npm start" to run locally
+Use command "npm start" to run locally
 
