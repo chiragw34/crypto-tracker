@@ -1,38 +1,68 @@
-.App {
+div#root {
+  padding: 1rem;
+  display: flex;
+}
+.main {
+  margin: 10px;
+  max-width: 40%;
+  min-height: calc(100vh - 40px);
+  width: 100%;
+  box-shadow: 0 0 10px 0px #c1c1c1;
+  border-radius: 10px;
+  padding: 1rem;
+
+  background: #0e0e0e;
+  box-shadow: 0 8px 32px 0 #76767600;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.main.charts {
+  max-width: unset;
+}
+.main-header {
+  width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #010101;
+  color: #909090;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ui.inverted.table{
+  background-color:#161616
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ui.table td.negative,
+.ui.table tr.negative {
+  background-color: #161616 !important;
+  color: #ff534f !important;
 }
 
-.App-link {
-  color: #61dafb;
+.ui.table td.positive,
+.ui.table tr.positive {
+  background-color: #161616 !important;
+  color: #4fcb54 !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ui.inverted.table th {
+  color: #919191 !important;
+}
+
+.MuiPaper-root {
+  background-color: #161616 !important;
+}
+
+.Component-root-4 {
+  fill: #919191 !important;
+}
+
+.Component-root-5 {
+  stroke: #484848 !important;
+}
+
+.Title-root-2 {
+  color: #909090 !important;
 }

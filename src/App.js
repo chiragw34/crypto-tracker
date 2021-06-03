@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "semantic-ui-css/semantic.min.css";
+import "./App.css";
+// Components
+import CryptoTable from "./CryptoTable";
+import Charts from "./Charts";
+
+import axios from "axios";
+axios.defaults.baseURL = "https://api.wazirx.com/api";
+// axios.defaults.headers.get["Accepts"] = "application/json";
+// axios.defaults.headers.common["Access-Control-Allow-Origin"] =
+//   "http://localhost:3000/";
+// axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
+// axios.defaults.proxy = {
+//   host: "localhost",
+//   port: 3000,
+// };
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="main">
+        {/* <h1 className="main-header">Crypto Tracker - Portfolio</h1> */}
+        <CryptoTable />
+      </div>
+      <div className="main charts">
+        {/* <h1 className="main-header">Crypto Tracker - Portfolio</h1> */}
+        <Charts />
+      </div>
+    </>
   );
 }
 
