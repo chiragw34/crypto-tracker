@@ -14,18 +14,15 @@ import {
 export class CryptoTable extends Component {
   state = {
     data: [],
-    
   };
 
   componentDidMount() {
-    getData().then(() => this.setState({  data: main_data }));
+    getData().then(() => this.setState({ data: main_data }));
   }
 
   componentDidUpdate() {
     setTimeout(() => {
-      getData().then(() =>
-        this.setState({  data: main_data })
-      );
+      getData().then(() => this.setState({ data: main_data }));
     }, 1000);
   }
 
@@ -65,8 +62,10 @@ export class CryptoTable extends Component {
         <Table celled inverted compact textAlign="center">
           <Table.Header>
             <Table.Row>
+              <Table.HeaderCell>SR NO.</Table.HeaderCell>
               <Table.HeaderCell>COIN</Table.HeaderCell>
               <Table.HeaderCell>COIN VALUE</Table.HeaderCell>
+              <Table.HeaderCell>AVERAGE BUY PRICE</Table.HeaderCell>
               <Table.HeaderCell>AMOUNT</Table.HeaderCell>
               <Table.HeaderCell>INVESTED</Table.HeaderCell>
               <Table.HeaderCell>CURRENT VALUE</Table.HeaderCell>
@@ -90,6 +89,7 @@ export class CryptoTable extends Component {
                     current,
                     status,
                     percentage,
+                    average,
                   },
                   i
                 ) => (
@@ -98,10 +98,10 @@ export class CryptoTable extends Component {
                     positive={status === "Profit"}
                     negative={status === "Loss"}
                   >
+                    <Table.Cell>{i + 1}</Table.Cell>
                     <Table.Cell>{base_unit.toUpperCase()}</Table.Cell>
-                    <Table.Cell>
-                      Rs.{last}
-                    </Table.Cell>
+                    <Table.Cell>Rs. {last}</Table.Cell>
+                    <Table.Cell>Rs. {average}</Table.Cell>
                     <Table.Cell>{amount}</Table.Cell>
                     <Table.Cell>Rs. {invested}</Table.Cell>
                     <Table.Cell>Rs. {current}</Table.Cell>

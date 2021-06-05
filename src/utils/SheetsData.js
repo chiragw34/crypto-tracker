@@ -6,7 +6,7 @@ export var total_current = 0;
 export var total_status = "";
 export var total_percentage = 0;
 export var total_amount = 0;
-export var main_data = []
+export var main_data = [];
 
 export const getData = async () => {
   console.log("fetching...");
@@ -14,8 +14,7 @@ export const getData = async () => {
   total_current = 0;
   total_status = "";
   total_percentage = 0;
-  main_data = []
-
+  main_data = [];
 
   return await axios.get("/v2/tickers").then((res) => {
     // console.log(res.data);
@@ -28,21 +27,23 @@ export const getData = async () => {
 
       temp.invested = c.Invested;
 
-      temp.current = (c.Amount * temp.last).toPrecision(8);
+      temp.current = (c.Amount * temp.last).toFixed(4);
 
       temp.status = temp.current - temp.invested > 0 ? "Profit" : "Loss";
 
       temp.percentage = parseFloat(
-        (((temp.current - temp.invested) / temp.invested) * 100).toPrecision(4)
+        (((temp.current - temp.invested) / temp.invested) * 100).toFixed(2)
       );
+
+      temp.average = (temp.invested / temp.amount).toFixed(6);
 
       total_invested = (
         parseFloat(total_invested) + parseFloat(temp.invested)
-      ).toPrecision(8);
+      ).toFixed(6);
 
       total_current = (
         parseFloat(total_current) + parseFloat(temp.current)
-      ).toPrecision(8);
+      ).toFixed(6);
 
       total_status = total_current - total_invested > 0 ? "Profit" : "Loss";
 
@@ -51,16 +52,16 @@ export const getData = async () => {
           ? (
               ((total_current - total_invested) / total_invested) *
               100
-            ).toPrecision(4)
+            ).toFixed(6)
           : (
               ((total_invested - total_current) / total_invested) *
               100
-            ).toPrecision(4);
+            ).toFixed(6);
 
       total_amount =
         total_status === "Profit"
-          ? `+ Rs. ${(total_current - total_invested).toPrecision(8)}`
-          : `- Rs. ${(total_invested - total_current).toPrecision(8)}`;
+          ? `+ Rs. ${(total_current - total_invested).toFixed(6)}`
+          : `- Rs. ${(total_invested - total_current).toFixed(6)}`;
 
       real.push(temp);
     });
@@ -78,10 +79,10 @@ export const getData = async () => {
       }
     });
 
-    main_data =  sorted;
+    main_data = sorted;
   });
 };
 
 export const refresh = () => {
-  return main_data
-}
+  return main_data;
+};
