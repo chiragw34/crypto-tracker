@@ -64,6 +64,8 @@ export class CryptoTable extends Component {
             <Table.Row>
               <Table.HeaderCell>SR NO.</Table.HeaderCell>
               <Table.HeaderCell>COIN</Table.HeaderCell>
+              <Table.HeaderCell>LOWEST TODAY</Table.HeaderCell>
+              <Table.HeaderCell>HIGHEST TODAY</Table.HeaderCell>
               <Table.HeaderCell>COIN VALUE</Table.HeaderCell>
               <Table.HeaderCell>AVERAGE BUY PRICE</Table.HeaderCell>
               <Table.HeaderCell>AMOUNT</Table.HeaderCell>
@@ -90,6 +92,8 @@ export class CryptoTable extends Component {
                     status,
                     percentage,
                     average,
+                    low,
+                    high,
                   },
                   i
                 ) => (
@@ -100,6 +104,8 @@ export class CryptoTable extends Component {
                   >
                     <Table.Cell>{i + 1}</Table.Cell>
                     <Table.Cell>{base_unit.toUpperCase()}</Table.Cell>
+                    <Table.Cell>Rs. {low}</Table.Cell>
+                    <Table.Cell>Rs. {high}</Table.Cell>
                     <Table.Cell>Rs. {last}</Table.Cell>
                     <Table.Cell>Rs. {average}</Table.Cell>
                     <Table.Cell>{amount}</Table.Cell>
