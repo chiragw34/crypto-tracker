@@ -21,6 +21,14 @@ div#root {
 .main.charts {
   max-width: unset;
 }
+
+.right-container{
+  width: 100%;
+}
+.main.charts.suggestion{
+  min-height: 10vh;
+}
+
 .main-header {
   width: 100%;
   text-align: center;
@@ -65,4 +73,9 @@ body {
 
 .Title-root-2 {
   color: #909090 !important;
+}
+
+
+.layout> div{
+  background-color: #484848;
 }

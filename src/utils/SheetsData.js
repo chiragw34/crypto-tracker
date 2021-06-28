@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import axios from "axios";
 import data from "./data.json";
 
@@ -7,6 +8,46 @@ export var total_status = "";
 export var total_percentage = 0;
 export var total_amount = 0;
 export var main_data = [];
+export var sentiment = ''
+
+export const getDecision = async (coin) => {
+  var 
+    buyVolume = 0,
+  
+    sellVolume = 0,
+    msg = "",
+    percent = 0;
+
+  await axios.get(`/v2/depth?market=${coin}`).then((res) => {
+    const { asks, bids } = res.data;
+    console.log(asks, bids);
+
+    // buy
+    asks.map((entry) => {
+      buyVolume = buyVolume + parseFloat(entry[1]);
+    });
+    console.log(buyVolume);
+
+    // sell
+    bids.map((entry) => {
+      sellVolume = sellVolume + parseFloat(entry[1]);
+    });
+    console.log(sellVolume);
+
+    var totalVolume = buyVolume + sellVolume
+
+    if (buyVolume > sellVolume) {
+      msg = "buy";
+      percent = (buyVolume/totalVolume)*100
+    } else {
+      msg = "sell";
+      percent = (sellVolume/totalVolume)*100
+    }
+  });
+  sentiment = `${percent.toFixed(2)}% ${msg} ${coin.slice(0, -3).toUpperCase()}`;
+
+  return `${percent}% ${msg} ${coin.slice(0,-3).toUpperCase()}`;
+};
 
 export const getData = async () => {
   console.log("fetching...");
@@ -49,14 +90,12 @@ export const getData = async () => {
 
       total_percentage =
         total_status === "Profit"
-          ? (
-              ((total_current - total_invested) / total_invested) *
-              100
-            ).toFixed(6)
-          : (
-              ((total_invested - total_current) / total_invested) *
-              100
-            ).toFixed(6);
+          ? (((total_current - total_invested) / total_invested) * 100).toFixed(
+              6
+            )
+          : (((total_invested - total_current) / total_invested) * 100).toFixed(
+              6
+            );
 
       total_amount =
         total_status === "Profit"
@@ -69,11 +108,6 @@ export const getData = async () => {
     let sorted = real.sort((a, b) => {
       if (a.status === b.status) {
         return parseFloat(a.percentage) < parseFloat(b.percentage) ? 1 : -1;
-        // if (a.status === "Profit") {
-        //   return parseFloat(a.percentage) < parseFloat(b.percentage) ? 1 : -1;
-        // } else {
-        //   return parseFloat(a.percentage) < parseFloat(b.percentage) ? -1 : 1;
-        // }
       } else {
         return a.status < b.status ? 1 : -1;
       }
@@ -81,8 +115,4 @@ export const getData = async () => {
 
     main_data = sorted;
   });
-};
-
-export const refresh = () => {
-  return main_data;
 };
