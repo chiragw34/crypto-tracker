@@ -23,13 +23,13 @@ export const getDecision = async (coin) => {
     console.log(asks, bids);
 
     // buy
-    asks.map((entry) => {
+    bids.map((entry) => {
       buyVolume = buyVolume + parseFloat(entry[1]);
     });
     console.log(buyVolume);
 
     // sell
-    bids.map((entry) => {
+    asks.map((entry) => {
       sellVolume = sellVolume + parseFloat(entry[1]);
     });
     console.log(sellVolume);
